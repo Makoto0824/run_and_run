@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlatformController : MonoBehaviour {
-
-    public bool deactivateAtLimit = true;//to restrict the start platfrom from deactivating
+public class PlatformController : MonoBehaviour
+{
+    public bool deactivateAtLimit = true;
 
     [SerializeField]
-    private SpriteRenderer[] top, bottom;//ref to the sprites which make the platform
+    private SpriteRenderer[] top, bottom;
 
-    private GameObject cameraObj; //ref to camera
+    private GameObject cameraObj;
     [SerializeField]
-    private float distFromCamera = -15.25f;//deactivate platfrom after limit distance is crossed
+    private float distFromCamera = -15.25f;
     private bool spawn = true;
-    private int i = 0;
+    private bool tileSetUpdated = false;
 
     public managerVars vars;
 
@@ -20,57 +20,52 @@ public class PlatformController : MonoBehaviour {
         vars = Resources.Load<managerVars>("managerVarsContainer");
     }
 
-    // Use this for initialization
-    void Start ()
-    {   //get ref to camera
+    void Start()
+    {
         cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
-        SetTileImages();//set the tile sprites
+        SetTileImages();
     }
 
-    // Update is called once per frame
     private void Update()
-    {   //if tileset is changes and i is 0
-        if (GameManager.instance.tileSetChanged && i == 0)
+    {
+        if (GameManager.instance.tileSetChanged && !tileSetUpdated)
         {
-            i = 1; //set i to 1
-            SetTileImages();//set the images
+            tileSetUpdated = true;
+            SetTileImages();
         }
 
-        //if the distance between platfrom and camera is less than 0 and spawn is true
         if (transform.position.x - cameraObj.transform.position.x <= 0 && spawn)
         {
-            spawn = false;//set spawn to false
-            PlatformSpawner.instance.SpawnPlatform();//spawn the new platform
+            spawn = false;
+            PlatformSpawner.instance.SpawnPlatform();
         }
-        //if the distance between platfrom and camera is less than requried distance
+
         if (transform.position.x - cameraObj.transform.position.x <= distFromCamera && deactivateAtLimit)
-        {   //deactiavte the platfrom
+        {
             gameObject.SetActive(false);
         }
     }
-    //called when platfrom is spawned
+
     public void BasicSettings()
     {
         spawn = true;
     }
-    //method which set the sprites
+
     void SetTileImages()
     {
-        //top tile
         if (top.Length != 0)
-        {   //loop through all the images
-            for (int i = 0; i < top.Length; i++)
-            {   //and set it to the selected world
-                top[i].sprite = vars.themeData[GameManager.instance.selectedTheme].topTile;
+        {
+            foreach (var spriteRenderer in top)
+            {
+                spriteRenderer.sprite = vars.themeData[GameManager.instance.selectedTheme].topTile;
             }
         }
 
-        //bottom top tile
         if (bottom.Length != 0)
         {
-            for (int i = 0; i < bottom.Length; i++)
+            foreach (var spriteRenderer in bottom)
             {
-                bottom[i].sprite = vars.themeData[GameManager.instance.selectedTheme].bottomTile;
+                spriteRenderer.sprite = vars.themeData[GameManager.instance.selectedTheme].bottomTile;
             }
         }
     }
