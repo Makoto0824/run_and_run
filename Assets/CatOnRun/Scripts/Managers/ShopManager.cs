@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 //キャラ数、金額、名前などは[managerVars]にて管理
 
-public class ShopManager : MonoBehaviour {
+public class ShopManager : MonoBehaviour
+{
 
-	//public GameObject shopItemName;
- 
-	public GameObject scrollContent, shopItemPrefab, shopMenu, shopPlay, shopBuy;
+    //public GameObject shopItemName;
+
+    public GameObject scrollContent, shopItemPrefab, shopMenu, shopPlay, shopBuy;
     public Button closeShop, shopSelectButton, openShop;
     public Text shopSelectButtonText;
     public ScrollRect shopScroll;
@@ -24,15 +25,15 @@ public class ShopManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         closeShop.GetComponent<Button>().onClick.AddListener(() => { CloseShopMenu(); });
         openShop.GetComponent<Button>().onClick.AddListener(() => { OpenShopMenu(); });
         shopSelectButton.GetComponent<Button>().onClick.AddListener(() => { SelectCharacter(); });
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //current Location
         float curLoc = scroll.content.anchoredPosition.x / scrollItemWidth;
@@ -65,37 +66,37 @@ public class ShopManager : MonoBehaviour {
         }
         //check if shop menu is active
         if (shopMenu.activeSelf)
-        {   
-			//if yes then we set the position of character images
+        {
+            //if yes then we set the position of character images
             //キャラクターの表示設定
             for (int i = 0; i <= scrollContent.transform.childCount - 1; i++)
-            {   
-				//we make the selected image size to its full size
+            {
+                //we make the selected image size to its full size
                 //選択したキャラクターの表示サイズ
                 if (i == characterIndex)
                 {
                     scrollContent.transform.GetChild(characterIndex).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(300, 240);
                 }
-				//and we make the un-selected image size to its half size
+                //and we make the un-selected image size to its half size
                 //選択してないキャラクターの表示サイズ
                 else
                 {
                     scrollContent.transform.GetChild(i).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150f);
                 }
             }
-            
-			//we then sets the name of character
+
+            //we then sets the name of character
             //キャラクター名の設定
-			//shopItemName.GetComponent<Text>().text = vars.characters[characterIndex].characterName;
-            
-			//set the button
+            //shopItemName.GetComponent<Text>().text = vars.characters[characterIndex].characterName;
+
+            //set the button
             //アンロックおよびロックのボタン表示設定
-            if (GameManager.instance.skinUnlocked[characterIndex] == true)
+            if (GameManager.instance.skinUnlocked[characterIndex])
             {
                 shopPlay.SetActive(true);
                 shopBuy.SetActive(false);
             }
-            else if (GameManager.instance.skinUnlocked[characterIndex] == false)
+            else
             {
                 shopPlay.SetActive(false);
                 shopBuy.SetActive(true);
@@ -131,7 +132,7 @@ public class ShopManager : MonoBehaviour {
     public void SelectCharacter()
     {
         GuiManager.instance.ButtonPress();
-        if (GameManager.instance.skinUnlocked[characterIndex] == true)
+        if (GameManager.instance.skinUnlocked[characterIndex])
         {
             GameManager.instance.selectedSkin = characterIndex;
             GameManager.instance.Save();
@@ -154,7 +155,7 @@ public class ShopManager : MonoBehaviour {
             UpdateShopItems();
 
         }
-        else if (GameManager.instance.points < vars.characters[characterIndex].characterPrice)
+        else
         {
             Debug.Log("Buy Coins");
         }
@@ -162,13 +163,13 @@ public class ShopManager : MonoBehaviour {
 
     //method which controls the movement and scrolling and spawning image prefabs 
     public void UpdateShopItems()
-    {   
-		//set the scrollContent parent size
+    {
+        //set the scrollContent parent size
         //スクロール背景の設定1
         scrollContent.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2((vars.characters.Count * scrollItemWidth) + 850f, 380f);
         //set the scrollContent size
-		//スクロール背景の設定2
-		scrollContent.GetComponent<RectTransform>().sizeDelta = new Vector2((vars.characters.Count * scrollItemWidth) +850f, 200f);
+        //スクロール背景の設定2
+        scrollContent.GetComponent<RectTransform>().sizeDelta = new Vector2((vars.characters.Count * scrollItemWidth) + 850f, 200f);
         //loop through all the characters
         for (int i = 0; i <= (vars.characters.Count - 1); i++)
         {   //spawn the prefab
@@ -177,31 +178,19 @@ public class ShopManager : MonoBehaviour {
             shopItem.transform.localRotation = Quaternion.Euler(0, 0, 0);//set its rotation
             shopItem.transform.localScale = new Vector3(1, 1, 1);//set its scale
             if (i == 0) //the prefas at 0 index
-            {   
-				//選択されたキャラクターの位置
+            {
+                //選択されたキャラクターの位置
                 shopItem.transform.localPosition = new Vector3(418f, 50.0f, 0);
             }
             else
-            {   
-				//set other next prefabs position
+            {
+                //set other next prefabs position
                 //選択されてないキャラクター位置
                 shopItem.transform.localPosition = new Vector3((scrollItemWidth * i) + 418f, 50.0f, 0);
             }
             //we get the tranform of the object which has Image component on it(image prefab)
             Transform x = shopItem.transform.GetChild(0).GetChild(0);
-            if (i == 0)
-            {   //set the image value
-                x.GetComponent<Image>().sprite = vars.characters[0].characterSprite;
-            }
-            else
-            {   //set the image value
-                x.GetComponent<Image>().sprite = vars.characters[i].characterSprite;
-                //if (GameManager.instance.skinUnlocked[i] == false)
-                //{   //if the characters are unlocked then there color is set
-                //    x.GetComponent<Image>().color = new Color32(0, 0, 0, 150);
-                //    //x.GetComponent<Image>().color = new Color32(0, 0, 0, 150);
-                //}
-            }
+            x.GetComponent<Image>().sprite = vars.characters[i].characterSprite;
         }
         //when we open the shop the scroll is set to show the selected object in middle
         shopScroll.content.anchoredPosition = new Vector2(-(GameManager.instance.selectedSkin * scrollItemWidth), 0f);

@@ -11,7 +11,7 @@ public class SafeAreaBounds : MonoBehaviour
 #endif
 
     void Awake()
-    {   
+    {
         target = GetComponent<RectTransform>();
         ApplySafeArea();
     }
@@ -30,13 +30,13 @@ public class SafeAreaBounds : MonoBehaviour
         {
             Vector2 positionOffset;
             Vector2 sizeOffset;
-            //縦持ち
-            if (Screen.width < Screen.height)
+
+            bool isPortrait = Screen.width < Screen.height;
+            if (isPortrait)
             {
                 positionOffset = new Vector2(0f, area.size.y * 34f / 812f);
                 sizeOffset = positionOffset + new Vector2(0f, area.size.y * 44f / 812f);
             }
-            //横持ち
             else
             {
                 positionOffset = new Vector2(area.size.x * 44f / 812f, area.size.y * 21f / 375f);
