@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package version="software5.7" xmlns="http://apple.com/itunes/importer">
+  <provider>23Q6ZW7GGS</provider>
+  <team_id>23Q6ZW7GGS</team_id>
+  <software>
+    <vendor_id>unstoppable006</vendor_id>
+    <software_metadata>
+      <in_app_purchases>
+        <in_app_purchase>
+          <product_id>product1</product_id>
+          <reference_name>product1</reference_name>
+          <type>non-consumable</type>
+          <products>
+            <product>
+              <cleared_for_sale>true</cleared_for_sale>
+              <wholesale_price_tier>1</wholesale_price_tier>
+            </product>
+          </products>
+          <locales>
+            <locale name="ja">
+              <title>広告を非表示</title>
+              <description>広告を非表示にします</description>
+            </locale>
+          </locales>
+          <review_screenshot>
+            <file_name>有料アプリ審査用.jpg</file_name>
+            <size>98867</size>
+            <checksum>8d797c7d8c9f6d188e38712e61be273b</checksum>
+          </review_screenshot>
+        </in_app_purchase>
+      </in_app_purchases>
+    </software_metadata>
+  </software>
+</package>

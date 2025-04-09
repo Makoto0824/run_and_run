@@ -1,0 +1,58 @@
+﻿<Properties StartupConfiguration="{F0D36045-C75C-34CF-EF3A-4F6E9B0131C1}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CatOnRun/Editor/GameDesign.cs">
+    <Files>
+      <File FileName="Assets/CatOnRun/Scripts/BackgroundController.cs" Line="1" Column="1" />
+      <File FileName="Assets/CatOnRun/Scripts/CameraController.cs" />
+      <File FileName="Assets/CatOnRun/Scripts/PlayerController.cs" />
+      <File FileName="Assets/CatOnRun/Scripts/ObjectPooling.cs" />
+      <File FileName="Assets/CatOnRun/Scripts/Managers/GameManager.cs" Line="81" Column="13" />
+      <File FileName="Assets/CatOnRun/Scripts/Managers/GuiManager.cs" Line="77" Column="1" />
+      <File FileName="Assets/CatOnRun/Scripts/PlatformController.cs" />
+      <File FileName="Assets/CatOnRun/Resources/managerVars.cs" Line="21" Column="9" />
+      <File FileName="Assets/CatOnRun/Scripts/Managers/ShopManager.cs" Line="137" Column="36" />
+      <File FileName="Assets/CatOnRun/Scripts/Managers/WorldShopManager.cs" Line="9" Column="14" />
+      <File FileName="Assets/CatOnRun/Scripts/PlayerSpawner.cs" Line="17" Column="82" />
+      <File FileName="Assets/CatOnRun/Scripts/PlatformSpawner.cs" />
+      <File FileName="Assets/CatOnRun/Scripts/AdMobRectangle.cs" Line="8" Column="16" />
+      <File FileName="Assets/CatOnRun/Scripts/AdMobInterstitial.cs" Line="9" Column="33" />
+      <File FileName="Assets/CatOnRun/Scripts/GameCenter.cs" />
+      <File FileName="Assets/CatOnRun/Scripts/SafeAreaBounds.cs" />
+      <File FileName="Assets/GoogleMobileAds/Editor/PListProcessor.cs" />
+      <File FileName="Assets/CatOnRun/Editor/CustomizeEditor.cs" Line="3" Column="19" />
+      <File FileName="Assets/CatOnRun/Scripts/IDFA.cs" Line="28" Column="35" />
+      <File FileName="Assets/CatOnRun/Editor/GameDesign.cs" Line="11" Column="13" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="run" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="CatOnRun" expanded="True">
+                <Node name="Editor" expanded="True">
+                  <Node name="GameDesign.cs" selected="True" />
+                </Node>
+                <Node name="Resources" expanded="True" />
+                <Node name="Scripts" expanded="True">
+                  <Node name="Managers" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Unity" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.run PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="392e5f8d-ff70-4066-bbcf-082371b6f8a2" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
